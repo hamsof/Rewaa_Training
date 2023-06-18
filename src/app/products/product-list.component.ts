@@ -33,6 +33,7 @@ export class ProductListComponent implements OnInit {
         this.buttonText = this.isImage ? "Hide" : "Show"
     }
     notify(message: string): void {
+        console.log(message);
         this.outputText = message
     }
     products: IProduct[] = [{

@@ -13,6 +13,6 @@ export class StarComponent implements OnChanges {
     this.cropWidth = this.rating * 93 / 5;
   }
   onRatingClicked(): void {
-    this.ratingClicked.emit("Rating is" + this.rating)
+    this.ratingClicked.emit(`Rating is ${this.rating}`);
   }
 }

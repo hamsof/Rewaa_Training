@@ -38,7 +38,7 @@
                         <td>{{product.title | upper}}</td>
                         <td>{{product.stock}}</td>
                         <td>{{product.price | currency:"INR"}}</td>
-                        <td><app-star [rating]="product.rating" (onRatingClicked)="notify($event)"></app-star></td>
+                        <td><app-star [rating]="product.rating" (ratingClicked)="notify($event)"></app-star></td>
                     </tr>
                 </tbody>
             </div>
