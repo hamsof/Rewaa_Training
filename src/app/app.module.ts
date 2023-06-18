@@ -7,13 +7,16 @@ import { ProductListComponent } from './products/product-list.component';
 import { FormsModule } from '@angular/forms';
 import { UpperPipe } from './shared/custom_pipe';
 import { StarComponent } from './star/star.component';
+
+import { HttpClientModule } from '@angular/common/http'
 @NgModule({
   declarations: [
     AppComponent, ProductListComponent, UpperPipe, StarComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
