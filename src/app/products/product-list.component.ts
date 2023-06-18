@@ -20,7 +20,9 @@ export class ProductListComponent implements OnInit {
     outputText: string = "";
 
     ngOnInit(): void {
-        this.products = this.productService.getProducts()
+        this.productService.getProducts().subscribe(
+            { next: products => this.products = products }
+        )
         this.filetedProducts = this.products
     }
 
