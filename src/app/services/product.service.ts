@@ -3,17 +3,21 @@ import { Observable, catchError, tap } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { IProduct } from 'src/app/products/product';
 
+interface IResponse {
+  products: IProduct[]
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
+
   constructor(private http: HttpClient) { }
   private httpUtl: string = "https://dummyjson.com/products";
-  getProducts(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(this.httpUtl).pipe(
-      tap((data: IProduct[]) => console.log(data)
-      )
+  getProducts(): Observable<IResponse> {
+    return this.http.get<IResponse>(this.httpUtl).pipe(
+      tap(data => console.log(data))
     )
   }
 }
