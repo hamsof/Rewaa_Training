@@ -20,12 +20,13 @@ export class ProductListComponent implements OnInit {
     outputText: string = "";
 
     ngOnInit(): void {
-        this.productService.getProducts().subscribe(
-            data => {
+        this.productService.getProducts().subscribe({
+            next: data => {
                 this.products = data.products
                 this.filetedProducts = this.products
-            }
-        )
+            },
+            error: err => console.log(err)
+        })
     }
 
 

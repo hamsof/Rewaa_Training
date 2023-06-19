@@ -17,7 +17,8 @@ export class ProductService {
   private httpUtl: string = "https://dummyjson.com/products";
   getProducts(): Observable<IResponse> {
     return this.http.get<IResponse>(this.httpUtl).pipe(
-      tap(data => console.log(data))
+      tap(data => console.log(data)),
+      catchError(err => { throw err })
     )
   }
 }
