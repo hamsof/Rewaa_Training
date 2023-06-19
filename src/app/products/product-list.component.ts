@@ -19,12 +19,18 @@ export class ProductListComponent implements OnInit {
     _listFilter: string = "";
     outputText: string = "";
 
+    data_1: any;
+
     ngOnInit(): void {
         this.productService.getProducts().subscribe(
-            { next: products => this.products = products }
+            data => {
+                this.data_1 = data;
+                this.products = this.data_1.products
+                this.filetedProducts = this.products
+            }
         )
-        this.filetedProducts = this.products
     }
+
 
     get filteredText(): string {
         return this._listFilter;

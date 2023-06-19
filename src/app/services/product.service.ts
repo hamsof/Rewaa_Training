@@ -9,8 +9,11 @@ import { IProduct } from 'src/app/products/product';
 export class ProductService {
 
   constructor(private http: HttpClient) { }
-  private httpUtl: string = "/api/products.ts";
+  private httpUtl: string = "https://dummyjson.com/products";
   getProducts(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(this.httpUtl)
+    return this.http.get<IProduct[]>(this.httpUtl).pipe(
+      tap((data: IProduct[]) => console.log(data)
+      )
+    )
   }
 }
