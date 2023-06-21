@@ -1,6 +1,8 @@
 import { Component, OnInit, Pipe } from '@angular/core';
 import { IProduct } from './product';
 import { ProductService } from 'src/app/services/product.service';
+import { Observable, map } from 'rxjs';
+import { from } from 'rxjs';
 
 @Component({
     selector: 'pm-product',
@@ -8,6 +10,7 @@ import { ProductService } from 'src/app/services/product.service';
     styleUrls: ["./product-list.component.css"]
 })
 export class ProductListComponent implements OnInit {
+
 
     constructor(private productService: ProductService) { }
 
@@ -18,15 +21,21 @@ export class ProductListComponent implements OnInit {
     filetedProducts: IProduct[] = [];
     _listFilter: string = "";
     outputText: string = "";
+    Observable$: Observable<Event> = new Observable<Event>();
+    productServiceSubscription: any;
+
 
     ngOnInit(): void {
-        this.productService.getProducts().subscribe({
+        this.productServiceSubscription = this.productService.getProducts().subscribe({
             next: data => {
-                this.products = data.products
+                this.products = data.products;
                 this.filetedProducts = this.products
             },
             error: err => console.log(err)
         })
+    }
+    ngOnDestroy(): void {
+        this.productServiceSubscription.unsubscribe();
     }
 
 
@@ -49,4 +58,16 @@ export class ProductListComponent implements OnInit {
         console.log(message);
         this.outputText = message
     }
+    priceClickHandler(event: Event): void {
+        this.Observable$ = new Observable<Event>(observer => {
+            observer.next(event);
+            observer.complete();
+        });
+        this.Observable$.subscribe({
+            next: data => console.log(data),
+            error: err => console.log(err),
+            complete: () => console.log("completed")
+        })
+    }
+
 }

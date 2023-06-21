@@ -35,9 +35,9 @@
                 <tbody>
                     <tr *ngFor="let product of filetedProducts">
                         <td><img *ngIf="isImage" [src]='product.thumbnail' alt=""></td>
-                        <td>{{product.title | upper}}</td>
+                        <td><a [routerLink]="['/products', product.id]">{{product.title | upper}}</a></td>
                         <td>{{product.stock}}</td>
-                        <td>{{product.price | currency:"INR"}}</td>
+                        <td (click)="priceClickHandler($event)">{{product.price | currency:"INR"}}</td>
                         <td><app-star [rating]="product.rating" (ratingClicked)="notify($event)"></app-star></td>
                     </tr>
                 </tbody>
