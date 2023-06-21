@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './products/product-list.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpperPipe } from './shared/custom_pipe';
 import { StarComponent } from './star/star.component';
 
@@ -18,6 +18,7 @@ import { FormsComponent } from './forms/forms.component';
     AppComponent, ProductListComponent, UpperPipe, StarComponent, ProductDetailsComponent, NotFoundComponent, FormsComponent
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
